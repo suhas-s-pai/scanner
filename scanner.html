@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USN Submit Portal</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            background: radial-gradient(circle at center, #ff00ff, #8a00ff, #001aff, #00eaff);
+            background-size: 300% 300%;
+            animation: bgMove 12s infinite alternate;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @keyframes bgMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .card {
+            width: 350px;
+            padding: 30px;
+            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 0 30px rgba(255, 0, 255, 0.6),
+                        0 0 60px rgba(0, 255, 255, 0.4);
+            animation: float 3s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
+        }
+
+        h1 {
+            text-align: center;
+            color: #fff;
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px cyan, 0 0 20px magenta;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            border-radius: 12px;
+            outline: none;
+            font-size: 18px;
+            color: #fff;
+            background: transparent;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: #00eaff;
+            box-shadow: 0 0 12px cyan;
+        }
+
+        label {
+            position: absolute;
+            left: 15px;
+            top: 12px;
+            font-size: 16px;
+            color: #ddd;
+            transition: 0.3s;
+            pointer-events: none;
+        }
+
+        input:focus + label,
+        input:not(:placeholder-shown) + label {
+            top: -12px;
+            font-size: 13px;
+            color: cyan;
+            text-shadow: 0 0 10px cyan;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(90deg, #ff00ff, #00eaff);
+            border: none;
+            border-radius: 12px;
+            font-size: 20px;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 0 15px #ff00ff, 0 0 20px cyan;
+        }
+
+        .btn:hover {
+            transform: scale(1.06);
+            box-shadow: 0 0 30px #00eaff, 0 0 45px #ff00ff;
+        }
+
+        #result {
+            text-align: center;
+            margin-top: 15px;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 600;
+            text-shadow: 0 0 10px lime;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>USN PORTAL</h1>
+
+        <div class="input-group">
+            <input type="text" id="usn" required placeholder=" ">
+            <label>Enter USN</label>
+        </div>
+
+        <button class="btn" onclick="submitUSN()">Submit</button>
+
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function submitUSN() {
+            let usn = document.getElementById("usn").value.trim();
+            let result = document.getElementById("result");
+
+            if (usn === "") {
+                result.style.color = "yellow";
+                result.innerHTML = "⚠ Please enter your USN!";
+                return;
+            }
+
+            result.style.color = "lime";
+            result.innerHTML = "✔ USN Submitted Successfully!";
+            document.getElementById("usn").value = "";
+        }
+    </script>
+
+</body>
+</html>
